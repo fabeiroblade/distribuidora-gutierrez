@@ -18,14 +18,14 @@ const aLista = (valor: string) =>
     .filter(Boolean);
 
 const telefonos = aLista(
-  limpiar(process.env.NEXT_PUBLIC_TELEFONOS, '2262-5041, 7527-8155, 7483-1791')
+  limpiar(process.env.NEXT_PUBLIC_TELEFONOS, '7483-1791, 2262-5041, 7527-8155')
 );
 
 export const contacto = {
   empresa: 'Distribuidora Gutiérrez',
   eslogan: 'Desechables y productos de limpieza al por mayor',
 
-  whatsapp: soloDigitos(limpiar(process.env.NEXT_PUBLIC_WHATSAPP, '50375278155')),
+  whatsapp: soloDigitos(limpiar(process.env.NEXT_PUBLIC_WHATSAPP, '50374831791')),
 
   /** Todos los numeros publicados; el primero es el principal. */
   telefonos,

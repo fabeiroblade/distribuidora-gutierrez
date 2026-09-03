@@ -95,7 +95,7 @@ entorno. Se editan en `.env.local` para local, y en Vercel desde
 `.env.example` tiene la plantilla completa con ejemplos.
 
 > Ya están cargados los datos reales: correo, los tres teléfonos, el WhatsApp
-> (7527-8155) e Instagram (`@distribuidoragutierrez140724`).
+> (7483-1791) e Instagram (`@distribuidoragutierrez140724`).
 >
 > **Las redes sin perfil no se muestran.** Facebook y TikTok están vacías, así
 > que sus botones no aparecen en ninguna parte del sitio. Para activar Facebook
