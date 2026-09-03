@@ -1,0 +1,13 @@
+{
+  "name": "dg-herramientas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pruebas de compatibilidad. Aparte del sitio para que Vercel no instale Playwright en cada despliegue.",
+  "scripts": {
+    "ios": "node probar-ios.js",
+    "preparar": "playwright install webkit"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}
