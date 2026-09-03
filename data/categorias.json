@@ -1,0 +1,9 @@
+[
+  { "id": "contenedores", "nombre": "Depósitos y contenedores", "grupo": "Desechables", "emoji": "🥡" },
+  { "id": "bandejas",     "nombre": "Bandejas y porcioneros",   "grupo": "Desechables", "emoji": "🍰" },
+  { "id": "papel",        "nombre": "Papel, film y empaque",    "grupo": "Desechables", "emoji": "🧻" },
+  { "id": "utensilios",   "nombre": "Escobas, cepillos y mopas","grupo": "Limpieza",    "emoji": "🧹" },
+  { "id": "fibras",       "nombre": "Fibras, paños y esponjas", "grupo": "Limpieza",    "emoji": "🧽" },
+  { "id": "quimicos",     "nombre": "Químicos y desinfectantes","grupo": "Limpieza",    "emoji": "🧴" },
+  { "id": "jabones",      "nombre": "Jabones y detergentes",    "grupo": "Limpieza",    "emoji": "🫧" }
+]

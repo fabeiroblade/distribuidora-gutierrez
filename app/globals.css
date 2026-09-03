@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --superficie: 255 255 255;
+    --superficie-2: 247 247 248;
+    --borde: 220 220 226;
+    --texto: 22 22 28;
+    --texto-suave: 99 99 111;
+  }
+
+  .dark {
+    --superficie: 13 13 17;
+    --superficie-2: 22 22 28;
+    --borde: 51 51 59;
+    --texto: 238 238 241;
+    --texto-suave: 185 185 196;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* deja aire bajo el header sticky al saltar a un ancla */
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: rgb(var(--superficie));
+    color: rgb(var(--texto));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: #b02647;
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid #ee2260;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .contenedor {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .titulo-seccion {
+    @apply font-display text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-[2.75rem];
+  }
+
+  /* Franja diagonal tomada del banner del catalogo impreso */
+  .franja-marca {
+    background-image: repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.09) 0px,
+      rgba(255, 255, 255, 0.09) 26px,
+      transparent 26px,
+      transparent 60px
+    );
+  }
+}
+
+@layer utilities {
+  .texto-suave {
+    color: rgb(var(--texto-suave));
+  }
+
+  .borde-sutil {
+    border-color: rgb(var(--borde));
+  }
+
+  .superficie-2 {
+    background-color: rgb(var(--superficie-2));
+  }
+
+  /* Sin JavaScript no hay quien dispare la aparicion: el contenido se muestra tal cual */
+  @media (scripting: none) {
+    [data-revelar] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  /* Oculta la barra de scroll en los carruseles de filtros */
+  .sin-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .sin-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,0 +1,552 @@
+[
+  {
+    "id": "deposito-1oz",
+    "nombre": "Depósito transparente 1 oz con tapadera",
+    "descripcion": "Depósito plástico transparente de 1 onza con tapadera incluida. Ideal para salsas, aderezos y porciones individuales.",
+    "categoria": "contenedores",
+    "imagen": "/productos/deposito-1oz.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 1,800 unidades", "Paquete de 100 unidades"],
+    "destacado": true
+  },
+  {
+    "id": "deposito-2oz",
+    "nombre": "Depósito transparente 2 oz con tapadera",
+    "descripcion": "Depósito plástico transparente de 2 onzas con tapadera. Cierre seguro para transporte de salsas y cremas.",
+    "categoria": "contenedores",
+    "imagen": "/productos/deposito-2oz.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 1,000 unidades", "Paquete de 100 unidades"],
+    "destacado": true
+  },
+  {
+    "id": "deposito-25oz",
+    "nombre": "Depósito transparente 2.5 oz con tapadera",
+    "descripcion": "Depósito plástico de 2.5 onzas con tapadera a presión. Resistente y apto para alimentos.",
+    "categoria": "contenedores",
+    "imagen": "/productos/deposito-25oz.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 2,500 unidades", "Paquete de 100 unidades"],
+    "destacado": false
+  },
+  {
+    "id": "deposito-4oz",
+    "nombre": "Depósito transparente 4 oz con tapadera",
+    "descripcion": "Depósito de 4 onzas con tapadera, disponible en presentación transparente y negra. Perfecto para postres y porciones grandes.",
+    "categoria": "contenedores",
+    "imagen": "/productos/deposito-4oz.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 2,000 unidades", "Paquete de 100 unidades"],
+    "destacado": true
+  },
+  {
+    "id": "bandeja-mitad-sandwich",
+    "nombre": "Bandeja transparente para mitades de sándwich",
+    "descripcion": "Envase transparente con bisagra para media porción de sándwich. Alta visibilidad del producto en exhibición.",
+    "categoria": "bandejas",
+    "imagen": "/productos/bandeja-mitad-sandwich.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 250 unidades"],
+    "destacado": false
+  },
+  {
+    "id": "bandeja-sandwich-entero",
+    "nombre": "Bandeja transparente para sándwich entero",
+    "descripcion": "Envase transparente con cierre de presión para sándwich completo. Mantiene la presentación intacta.",
+    "categoria": "bandejas",
+    "imagen": "/productos/bandeja-sandwich-entero.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 500 unidades"],
+    "destacado": false
+  },
+  {
+    "id": "bandeja-tres-leches",
+    "nombre": "Bandeja para tres leches",
+    "descripcion": "Bandeja alta con tapa abisagrada, diseñada para porciones de tres leches y postres húmedos. Medida 9x9x6.",
+    "categoria": "bandejas",
+    "imagen": "/productos/bandeja-tres-leches.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 250 unidades", "Referencia #9X9X6"],
+    "destacado": true
+  },
+  {
+    "id": "porcionero-bajo-pastel",
+    "nombre": "Porcionero bajo para pastel",
+    "descripcion": "Porcionero triangular de perfil bajo para rebanadas de pastel. Base reforzada antiderrame.",
+    "categoria": "bandejas",
+    "imagen": "/productos/porcionero-bajo-pastel.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 250 unidades"],
+    "destacado": false
+  },
+  {
+    "id": "porcionero-alto-pastel",
+    "nombre": "Porcionero alto para pastel",
+    "descripcion": "Porcionero de perfil alto para rebanadas con decoración o cobertura voluminosa.",
+    "categoria": "bandejas",
+    "imagen": "/productos/porcionero-alto-pastel.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 250 unidades"],
+    "destacado": false
+  },
+  {
+    "id": "bandeja-hamburguesa",
+    "nombre": "Bandeja para hamburguesa",
+    "descripcion": "Envase abisagrado de alto volumen para hamburguesas. Referencia #340-L19.",
+    "categoria": "bandejas",
+    "imagen": "/productos/bandeja-hamburguesa.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 250 unidades", "Referencia #340-L19"],
+    "destacado": true
+  },
+  {
+    "id": "bandeja-nachos-mediano",
+    "nombre": "Bandeja para nachos medianos",
+    "descripcion": "Bandeja transparente con tapa para porciones medianas de nachos. Referencia #580-L20.",
+    "categoria": "bandejas",
+    "imagen": "/productos/bandeja-nachos-mediano.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 250 unidades", "Referencia #580-L20"],
+    "destacado": false
+  },
+  {
+    "id": "bandeja-nachos-grande",
+    "nombre": "Bandeja para nachos grandes",
+    "descripcion": "Bandeja transparente de gran capacidad para nachos con toppings. Referencia #2212-53.",
+    "categoria": "bandejas",
+    "imagen": "/productos/bandeja-nachos-grande.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 250 unidades", "Referencia #2212-53"],
+    "destacado": false
+  },
+  {
+    "id": "papel-aluminio",
+    "nombre": "Rollos de papel aluminio",
+    "descripcion": "Papel aluminio en rollo para cocina y empaque de alimentos calientes. Marcas disponibles según existencia.",
+    "categoria": "papel",
+    "imagen": "/productos/papel-aluminio.jpg",
+    "precio": null,
+    "presentaciones": ["Rollo 12\" x 200 pies", "Rollo 12\" x 500 pies"],
+    "destacado": true
+  },
+  {
+    "id": "papel-film-embalaje",
+    "nombre": "Papel film para embalaje",
+    "descripcion": "Film estirable para paletizado y embalaje de carga. Alta resistencia al rasgado.",
+    "categoria": "papel",
+    "imagen": "/productos/papel-film-embalaje.jpg",
+    "precio": null,
+    "presentaciones": ["Rollo de 15 micras", "Rollo de 18 micras"],
+    "destacado": false
+  },
+  {
+    "id": "papel-film-alimenticio",
+    "nombre": "Papel film grado alimenticio",
+    "descripcion": "Film autoadherible grado alimenticio para conservación y exhibición de alimentos.",
+    "categoria": "papel",
+    "imagen": "/productos/papel-film-alimenticio.jpg",
+    "precio": null,
+    "presentaciones": ["Rollo 12\" x 2000 pies", "Rollo 18\" x 2000 pies"],
+    "destacado": false
+  },
+  {
+    "id": "polipel",
+    "nombre": "Polipel en rollo y en resma",
+    "descripcion": "Papel polipel antigrasa para envolver y forrar bandejas de alimentos.",
+    "categoria": "papel",
+    "imagen": "/productos/polipel.jpg",
+    "precio": null,
+    "presentaciones": ["Rollo de 250 hojas", "Resma de 500 pliegos"],
+    "destacado": false
+  },
+  {
+    "id": "papel-encerado",
+    "nombre": "Papel encerado variedad de colores",
+    "descripcion": "Papel encerado con diseño de cuadros para presentación de alimentos. Consultar colores disponibles.",
+    "categoria": "papel",
+    "imagen": "/productos/papel-encerado.jpg",
+    "precio": null,
+    "presentaciones": ["Fardo de 500 pliegos", "Consultar colores disponibles"],
+    "destacado": true
+  },
+  {
+    "id": "papel-empaque",
+    "nombre": "Papel empaque",
+    "descripcion": "Papel kraft en rollo para empaque general y protección de mercadería.",
+    "categoria": "papel",
+    "imagen": "/productos/papel-empaque.jpg",
+    "precio": null,
+    "presentaciones": ["Fardo de 500 pliegos"],
+    "destacado": false
+  },
+  {
+    "id": "porta-vaso-2",
+    "nombre": "Porta vaso de 2 cavidades",
+    "descripcion": "Porta vasos de cartón para 2 bebidas, con asa integrada para transporte seguro.",
+    "categoria": "papel",
+    "imagen": "/productos/porta-vaso-2.jpg",
+    "precio": null,
+    "presentaciones": ["Paquete de 100 unidades"],
+    "destacado": false
+  },
+  {
+    "id": "porta-vaso-4",
+    "nombre": "Porta vaso de 4 cavidades",
+    "descripcion": "Porta vasos de pulpa moldeada para 4 bebidas. Resistente a la humedad.",
+    "categoria": "papel",
+    "imagen": "/productos/porta-vaso-4.jpg",
+    "precio": null,
+    "presentaciones": ["Paquete de 100 unidades"],
+    "destacado": false
+  },
+  {
+    "id": "palas-mango-largo",
+    "nombre": "Palas con mango largo",
+    "descripcion": "Pala recogedora con mango largo para barrido sin agacharse. Variedad de colores.",
+    "categoria": "utensilios",
+    "imagen": "/productos/palas-mango-largo.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad", "Variedad de colores"],
+    "destacado": false
+  },
+  {
+    "id": "escobas-altas",
+    "nombre": "Escobas altas",
+    "descripcion": "Escoba de cerda alta para barrido de superficies amplias, interiores y exteriores.",
+    "categoria": "utensilios",
+    "imagen": "/productos/escobas-altas.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad", "Variedad de colores"],
+    "destacado": true
+  },
+  {
+    "id": "escobas-bajas",
+    "nombre": "Escobas bajas",
+    "descripcion": "Escoba de cerda baja y densa, ideal para recoger polvo fino en pisos lisos.",
+    "categoria": "utensilios",
+    "imagen": "/productos/escobas-bajas.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad", "Variedad de colores"],
+    "destacado": false
+  },
+  {
+    "id": "cepillo-lavar-pisos",
+    "nombre": "Cepillo para lavar pisos",
+    "descripcion": "Cepillo de cerda dura con conexión para palo largo. Para lavado profundo de pisos.",
+    "categoria": "utensilios",
+    "imagen": "/productos/cepillo-lavar-pisos.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad", "Presentación con palo largo", "Variedad de colores"],
+    "destacado": false
+  },
+  {
+    "id": "cepillos-mano-plancha",
+    "nombre": "Cepillos para mano de plancha",
+    "descripcion": "Cepillo de mano con agarre tipo plancha para refregado de superficies y ropa.",
+    "categoria": "utensilios",
+    "imagen": "/productos/cepillos-mano-plancha.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad", "Variedad de colores"],
+    "destacado": false
+  },
+  {
+    "id": "cepillo-mano-ovalado",
+    "nombre": "Cepillo para mano ovalado",
+    "descripcion": "Cepillo ovalado de mano con cerda resistente, para lavado de ropa y superficies.",
+    "categoria": "utensilios",
+    "imagen": "/productos/cepillo-mano-ovalado.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad", "Variedad de colores"],
+    "destacado": false
+  },
+  {
+    "id": "halador-agua",
+    "nombre": "Halador de agua de hule o esponja",
+    "descripcion": "Halador de agua con hoja de hule o esponja para secado rápido de pisos.",
+    "categoria": "utensilios",
+    "imagen": "/productos/halador-agua.jpg",
+    "precio": null,
+    "presentaciones": ["42 cms", "45 cms", "Variedad de colores"],
+    "destacado": true
+  },
+  {
+    "id": "cepillo-bano",
+    "nombre": "Cepillo para baño",
+    "descripcion": "Cepillo sanitario para inodoro, disponible con base y sin base.",
+    "categoria": "utensilios",
+    "imagen": "/productos/cepillo-bano.jpg",
+    "precio": null,
+    "presentaciones": ["Con base", "Sin base", "Variedad de colores"],
+    "destacado": false
+  },
+  {
+    "id": "palo-trapeador",
+    "nombre": "Palo para trapeador",
+    "descripcion": "Palo con cabezal tipo horquilla para trapeador. Disponible en metal o plástico.",
+    "categoria": "utensilios",
+    "imagen": "/productos/palo-trapeador.jpg",
+    "precio": null,
+    "presentaciones": ["De metal", "De plástico"],
+    "destacado": false
+  },
+  {
+    "id": "rastrillo",
+    "nombre": "Rastrillos",
+    "descripcion": "Rastrillo de abanico para recolección de hojas y residuos en exteriores.",
+    "categoria": "utensilios",
+    "imagen": "/productos/rastrillo.jpg",
+    "precio": null,
+    "presentaciones": ["De metal", "De plástico"],
+    "destacado": false
+  },
+  {
+    "id": "mopa-atrapa-polvo",
+    "nombre": "Mopa atrapa polvo completa",
+    "descripcion": "Mopa completa con bastidor y mango para captura de polvo en grandes superficies.",
+    "categoria": "utensilios",
+    "imagen": "/productos/mopa-atrapa-polvo.jpg",
+    "precio": null,
+    "presentaciones": ["5 x 18 pulgadas", "5 x 24 pulgadas", "5 x 36 pulgadas"],
+    "destacado": true
+  },
+  {
+    "id": "repuesto-mopa",
+    "nombre": "Repuestos mopa atrapa polvo",
+    "descripcion": "Repuesto de felpa para mopa atrapa polvo. Compatible con bastidor estándar.",
+    "categoria": "utensilios",
+    "imagen": "/productos/repuesto-mopa.jpg",
+    "precio": null,
+    "presentaciones": ["18 pulgadas", "24 pulgadas", "36 pulgadas"],
+    "destacado": false
+  },
+  {
+    "id": "trapeadores",
+    "nombre": "Trapeadores",
+    "descripcion": "Trapeador de hilo absorbente para limpieza húmeda de pisos.",
+    "categoria": "utensilios",
+    "imagen": "/productos/trapeadores.jpg",
+    "precio": null,
+    "presentaciones": ["Doble toalla", "Toalla y persa", "Solo persa"],
+    "destacado": false
+  },
+  {
+    "id": "atomizadores-spray",
+    "nombre": "Atomizadores en spray",
+    "descripcion": "Botella atomizadora con gatillo para dilución y aplicación de productos de limpieza.",
+    "categoria": "utensilios",
+    "imagen": "/productos/atomizadores-spray.jpg",
+    "precio": null,
+    "presentaciones": ["16 onz / medio litro", "32 onz / 1 litro"],
+    "destacado": false
+  },
+  {
+    "id": "panos-wypall",
+    "nombre": "Paños reutilizables Wypall X80",
+    "descripcion": "Paño industrial reutilizable de alto rendimiento. Código de color por área de trabajo.",
+    "categoria": "fibras",
+    "imagen": "/productos/panos-wypall.jpg",
+    "precio": null,
+    "presentaciones": ["Paquete de 30 unidades", "Colores: rojo, amarillo, verde y azul"],
+    "destacado": true
+  },
+  {
+    "id": "pano-microfibra",
+    "nombre": "Paño limpiador de microfibra",
+    "descripcion": "Paño de microfibra ultra suave, sin pelusa. No raya superficies delicadas.",
+    "categoria": "fibras",
+    "imagen": "/productos/pano-microfibra.jpg",
+    "precio": null,
+    "presentaciones": ["Paquete de 36 unidades", "Color por paquete: azul o amarillo"],
+    "destacado": false
+  },
+  {
+    "id": "mascon-alambre",
+    "nombre": "Mascones de alambre para cocinas y parrillas",
+    "descripcion": "Fibra y esponja de alambre para remover grasa y residuos pegados en parrillas y hornos.",
+    "categoria": "fibras",
+    "imagen": "/productos/mascon-alambre.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad", "Marcas: Scotch Brite, Contraste y Bright"],
+    "destacado": false
+  },
+  {
+    "id": "mascon-fibra-verde",
+    "nombre": "Mascón fibra verde",
+    "descripcion": "Fibra verde de limpieza pesada para ollas, sartenes y superficies resistentes.",
+    "categoria": "fibras",
+    "imagen": "/productos/mascon-fibra-verde.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad", "Marcas: Scotch Brite y Bright"],
+    "destacado": false
+  },
+  {
+    "id": "mascon-fibra-esponja",
+    "nombre": "Mascón fibra verde con esponja",
+    "descripcion": "Fibra verde con esponja integrada. Combina refregado y absorción en una sola pieza.",
+    "categoria": "fibras",
+    "imagen": "/productos/mascon-fibra-esponja.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad", "Marcas: Scotch Brite y Bright"],
+    "destacado": true
+  },
+  {
+    "id": "galon-desinfectante",
+    "nombre": "Galón de desinfectante",
+    "descripcion": "Desinfectante concentrado en galón. Variedad de aromas y versión repelente de moscas con citronela.",
+    "categoria": "quimicos",
+    "imagen": "/productos/galon-desinfectante.jpg",
+    "precio": null,
+    "presentaciones": ["Galón", "Variedad de aromas", "Repelente de moscas citronela"],
+    "destacado": true
+  },
+  {
+    "id": "limpia-vidrios",
+    "nombre": "Limpia vidrios",
+    "descripcion": "Limpiador de vidrios y superficies brillantes. No deja marcas ni residuos.",
+    "categoria": "quimicos",
+    "imagen": "/productos/limpia-vidrios.jpg",
+    "precio": null,
+    "presentaciones": ["Galón", "Bote en spray"],
+    "destacado": true
+  },
+  {
+    "id": "lejia-orix-magia",
+    "nombre": "Lejía Orix y Magia Blanca",
+    "descripcion": "Cloro blanqueador y desinfectante en presentación de galón y sobres populinos.",
+    "categoria": "quimicos",
+    "imagen": "/productos/lejia-orix-magia.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad de galón", "Populino fardo de 72 unidades"],
+    "destacado": false
+  },
+  {
+    "id": "desengrasante",
+    "nombre": "Galón desengrasante",
+    "descripcion": "Desengrasante industrial para parrillas, cocinas y campanas de extracción.",
+    "categoria": "quimicos",
+    "imagen": "/productos/desengrasante.jpg",
+    "precio": null,
+    "presentaciones": ["Galón"],
+    "destacado": true
+  },
+  {
+    "id": "alcohol-gel",
+    "nombre": "Alcohol gel",
+    "descripcion": "Alcohol gel antibacterial para higiene de manos. Presentación institucional en galón.",
+    "categoria": "quimicos",
+    "imagen": "/productos/alcohol-gel.jpg",
+    "precio": null,
+    "presentaciones": ["Galón"],
+    "destacado": false
+  },
+  {
+    "id": "alcohol-etilico",
+    "nombre": "Alcohol líquido etílico",
+    "descripcion": "Alcohol etílico para desinfección de superficies e instrumentos.",
+    "categoria": "quimicos",
+    "imagen": "/productos/alcohol-etilico.jpg",
+    "precio": null,
+    "presentaciones": ["Galón al 70%", "Galón al 90%"],
+    "destacado": false
+  },
+  {
+    "id": "pastillas-aromatizantes",
+    "nombre": "Pastillas aromatizantes para baño",
+    "descripcion": "Pastilla desodorante y aromatizante para sanitarios. Variedad de aromas.",
+    "categoria": "quimicos",
+    "imagen": "/productos/pastillas-aromatizantes.jpg",
+    "precio": null,
+    "presentaciones": ["Unidad", "Variedad de aromas"],
+    "destacado": false
+  },
+  {
+    "id": "ambientador-glade",
+    "nombre": "Ambientador en spray Glade",
+    "descripcion": "Ambientador en aerosol para espacios cerrados. Amplia gama de aromas.",
+    "categoria": "quimicos",
+    "imagen": "/productos/ambientador-glade.jpg",
+    "precio": null,
+    "presentaciones": ["Bote de 400 ml", "Variedad de aromas"],
+    "destacado": false
+  },
+  {
+    "id": "insecticida-spray",
+    "nombre": "Insecticida spray Baygon y Raid Max",
+    "descripcion": "Insecticida en aerosol contra cucarachas, escorpiones y voladores.",
+    "categoria": "quimicos",
+    "imagen": "/productos/insecticida-spray.jpg",
+    "precio": null,
+    "presentaciones": ["Bote de 400 ml"],
+    "destacado": false
+  },
+  {
+    "id": "lysol-spray",
+    "nombre": "Desinfectante antibacterial Lysol spray",
+    "descripcion": "Desinfectante en aerosol para superficies y ambientes. Variedad de aromas.",
+    "categoria": "quimicos",
+    "imagen": "/productos/lysol-spray.jpg",
+    "precio": null,
+    "presentaciones": ["Bote de 354 gms", "Bote de 538 gms", "Variedad de aromas"],
+    "destacado": false
+  },
+  {
+    "id": "jabon-liquido",
+    "nombre": "Galón de jabón líquido",
+    "descripcion": "Jabón líquido humectante para manos, en presentación de galón. Variedad de aromas.",
+    "categoria": "jabones",
+    "imagen": "/productos/jabon-liquido.jpg",
+    "precio": null,
+    "presentaciones": ["Galón", "Variedad de aromas"],
+    "destacado": true
+  },
+  {
+    "id": "lavaplatos-tarro",
+    "nombre": "Lavaplatos en tarro Klinpiax, Max y Axion",
+    "descripcion": "Lavaplatos en crema, alto poder desengrasante. Varias marcas y aromas.",
+    "categoria": "jabones",
+    "imagen": "/productos/lavaplatos-tarro.jpg",
+    "precio": null,
+    "presentaciones": ["Tarro de 450 g", "Tarro de 1 kg", "Aromas: avena, limón, frutos rojos, cítricos"],
+    "destacado": true
+  },
+  {
+    "id": "jabon-barra",
+    "nombre": "Jabón lavaplatos en barra",
+    "descripcion": "Jabón en barra para lavado de trastes y ropa. Marcas Tex, Axion y Espumil.",
+    "categoria": "jabones",
+    "imagen": "/productos/jabon-barra.jpg",
+    "precio": null,
+    "presentaciones": ["Caja de 24 barras"],
+    "destacado": false
+  },
+  {
+    "id": "jabon-bola-xtra",
+    "nombre": "Jabón en bola Xtra",
+    "descripcion": "Jabón en bola para lavado de ropa a mano. Fragancia prolongada.",
+    "categoria": "jabones",
+    "imagen": "/productos/jabon-bola-xtra.jpg",
+    "precio": null,
+    "presentaciones": ["Paquete de 3 bolas", "Variedad de aromas"],
+    "destacado": false
+  },
+  {
+    "id": "detergente-cocina",
+    "nombre": "Detergente para cocina Ajax y Max en polvo",
+    "descripcion": "Limpiador en polvo con acción abrasiva para cocinas, lavamanos y superficies duras.",
+    "categoria": "jabones",
+    "imagen": "/productos/detergente-cocina.jpg",
+    "precio": null,
+    "presentaciones": ["Bote de 600 gms"],
+    "destacado": false
+  },
+  {
+    "id": "detergente-industrial",
+    "nombre": "Detergente industrial Lariansa y Orix",
+    "descripcion": "Detergente en polvo multiusos para lavandería industrial. Con y sin aroma.",
+    "categoria": "jabones",
+    "imagen": "/productos/detergente-industrial.jpg",
+    "precio": null,
+    "presentaciones": ["Fardo de 33 lbs con aroma", "Fardo de 33 lbs sin aroma"],
+    "destacado": true
+  }
+]
