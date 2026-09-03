@@ -17,6 +17,9 @@ export function ProveedorTema({ children }: { children: React.ReactNode }) {
   const [tema, setTema] = useState<Tema>('light');
 
   useEffect(() => {
+    // Avisa al script del <head> que React si hidrato, para que no retire la
+    // clase "js" y las animaciones de aparicion sigan su curso normal.
+    document.documentElement.setAttribute('data-hidratado', '1');
     setTema(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
   }, []);
 

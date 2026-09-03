@@ -78,15 +78,30 @@ export const viewport: Viewport = {
 };
 
 /**
- * Aplica el tema antes del primer pintado para que no haya un destello claro
- * al cargar en modo oscuro. Corre sincrono en el <head>.
+ * Corre sincrono en el <head>, antes del primer pintado:
+ *
+ * 1. Marca <html> con "js". Las animaciones de aparicion solo ocultan contenido
+ *    bajo esa clase, de modo que si el JavaScript falla la pagina se ve entera.
+ *    Va primero y fuera del try para que ni un error de localStorage lo impida.
+ * 2. Aplica el tema guardado, para que no haya un destello claro en modo oscuro.
  */
-const scriptTema = `
+const scriptInicio = `
 (function(){
+  var h = document.documentElement;
+  h.classList.add('js');
+
+  // Red de seguridad: si React no llego a hidratar (chunk que no carga, error
+  // en un navegador viejo, conexion cortada), se retira la clase y el contenido
+  // que esperaba la animacion se muestra tal cual. Vale mas una pagina sin
+  // animaciones que una pagina en blanco.
+  setTimeout(function(){
+    if (!h.hasAttribute('data-hidratado')) h.classList.remove('js');
+  }, 4000);
+
   try {
     var t = localStorage.getItem('dg-tema');
     if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
+      h.classList.add('dark');
     }
   } catch (e) {}
 })();
@@ -96,7 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-SV" className={`${inter.variable} ${jakarta.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: scriptTema }} />
+        <script dangerouslySetInnerHTML={{ __html: scriptInicio }} />
       </head>
       <body className="font-sans antialiased">
         <ProveedorTema>{children}</ProveedorTema>

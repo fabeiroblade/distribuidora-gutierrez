@@ -56,11 +56,11 @@ export function Reveal({ children, delay = 0, className, as: Etiqueta = 'div' }:
     <Etiqueta
       /* El ref concreto depende de `as`; el union de elementos no lo estrecha. */
       ref={ref as React.RefObject<never>}
+      /* El ocultamiento vive en globals.css, condicionado a que <html> tenga la
+         clase "js". Sin JavaScript no hay nada que ocultar y el bloque se ve. */
       data-revelar={visible ? 'visible' : 'oculto'}
       style={{ transitionDelay: visible && delay ? `${delay}s` : undefined }}
-      className={`transition-[opacity,transform] duration-[550ms] ease-[cubic-bezier(.16,1,.3,1)] ${
-        visible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-      } ${className ?? ''}`}
+      className={className}
     >
       {children}
     </Etiqueta>

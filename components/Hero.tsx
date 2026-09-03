@@ -68,7 +68,7 @@ export function Hero() {
     <section
       ref={ref}
       id="inicio"
-      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-[#180610] pt-[4.5rem] text-white"
+      className="relative isolate flex alto-pantalla items-center overflow-hidden bg-[#180610] pt-[4.5rem] text-white"
     >
       {/* Capa de fondo: degradado de marca + franjas diagonales del catálogo */}
       <motion.div
@@ -93,21 +93,16 @@ export function Hero() {
         style={reducido ? undefined : { y: yContenido, opacity: opacidad }}
       >
         <div className="mx-auto max-w-3xl text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.18em] backdrop-blur-sm"
+          <span
+            className="animate-fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.18em] backdrop-blur-sm"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
             Venta al por mayor · El Salvador
-          </motion.span>
+          </span>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="mx-auto mb-7 w-fit rounded-3xl bg-white px-7 py-5 shadow-2xl"
+          <div
+            style={{ animationDelay: '.05s' }}
+            className="animate-fade-up mx-auto mb-7 w-fit rounded-3xl bg-white px-7 py-5 shadow-2xl"
           >
             <Image
               src="/logo-dg.png"
@@ -117,35 +112,29 @@ export function Hero() {
               priority
               className="h-16 w-auto sm:h-24"
             />
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-[2rem] font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
+          <h1
+            style={{ animationDelay: '.1s' }}
+            className="animate-fade-up font-display text-[2rem] font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
           >
             Desechables y limpieza
             <span className="mt-2 block bg-gradient-to-r from-amber-400 via-white to-brand-200 bg-clip-text text-transparent">
               al precio de mayoreo
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="mx-auto mt-5 max-w-xl text-[0.95rem] leading-relaxed text-white/80 sm:text-base"
+          <p
+            style={{ animationDelay: '.18s' }}
+            className="animate-fade-up mx-auto mt-5 max-w-xl text-[0.95rem] leading-relaxed text-white/80 sm:text-base"
           >
             Todo lo que tu negocio necesita en un solo proveedor: depósitos, bandejas, papel film,
             escobas, detergentes y desinfectantes. Cajas, fardos y paquetes con entrega en todo el país.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          <div
+            style={{ animationDelay: '.26s' }}
+            className="animate-fade-up mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
           >
             <a
               href={whatsappUrl(mensajes.catalogo)}
@@ -163,13 +152,11 @@ export function Hero() {
               Ver catálogo
               <IconoFlecha className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
-          </motion.div>
+          </div>
 
-          <motion.dl
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mx-auto mt-9 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/15 pt-6"
+          <dl
+            style={{ animationDelay: '.4s' }}
+            className="animate-fade-up mx-auto mt-9 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/15 pt-6"
           >
             {cifras.map((c) => (
               <div key={c.etiqueta}>
@@ -177,7 +164,7 @@ export function Hero() {
                 <dd className="mt-1.5 text-[0.7rem] leading-snug text-white/65 sm:text-xs">{c.etiqueta}</dd>
               </div>
             ))}
-          </motion.dl>
+          </dl>
         </div>
       </motion.div>
     </section>

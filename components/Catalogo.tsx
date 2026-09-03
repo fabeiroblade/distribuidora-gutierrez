@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { categorias, grupos, productos } from '@/lib/productos';
 import { mensajes, whatsappUrl } from '@/lib/contacto';
@@ -21,6 +21,14 @@ export function Catalogo() {
   const [filtro, setFiltro] = useState<string>(TODOS);
   const [grupo, setGrupo] = useState<string>(TODOS);
   const [busqueda, setBusqueda] = useState('');
+
+  /**
+   * Las animaciones de entrada de las tarjetas solo se encienden ya en el
+   * navegador. En el HTML del servidor deben salir visibles: si framer escribe
+   * opacity:0 y la hidratacion falla, el catalogo entero queda en blanco.
+   */
+  const [montado, setMontado] = useState(false);
+  useEffect(() => setMontado(true), []);
 
   const nombreCategoria = useMemo(
     () => Object.fromEntries(categorias.map((c) => [c.id, c.nombre])),
@@ -211,6 +219,7 @@ export function Catalogo() {
                   producto={p}
                   categoria={nombreCategoria[p.categoria]}
                   prioritaria={i < 4}
+                  animar={montado}
                 />
               ))}
             </AnimatePresence>

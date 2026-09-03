@@ -59,6 +59,16 @@
     @apply font-display text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-[2.75rem];
   }
 
+  /**
+   * Alto de pantalla con respaldo. Safari de iOS solo entiende svh desde 15.4;
+   * en versiones anteriores la declaracion se descarta y, sin el 100vh previo,
+   * la portada se encoge al alto de su contenido.
+   */
+  .alto-pantalla {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
   /* Franja diagonal tomada del banner del catalogo impreso */
   .franja-marca {
     background-image: repeating-linear-gradient(
@@ -84,11 +94,35 @@
     background-color: rgb(var(--superficie-2));
   }
 
-  /* Sin JavaScript no hay quien dispare la aparicion: el contenido se muestra tal cual */
-  @media (scripting: none) {
-    [data-revelar] {
-      opacity: 1 !important;
-      transform: none !important;
+  /**
+   * Aparicion al entrar en pantalla.
+   *
+   * El bloque solo se oculta si <html> lleva la clase "js", que pone el script
+   * del <head>. Asi, si el JavaScript no llega a correr —bloqueado, un chunk
+   * que no carga, un error en un navegador viejo— el contenido se ve igual en
+   * vez de quedarse invisible para siempre. Ocultar por defecto y destapar con
+   * JS es justo lo contrario: una sola falla deja la pagina en blanco.
+   */
+  [data-revelar] {
+    transition:
+      opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .js [data-revelar='oculto'] {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-revelar='oculto'] {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* La portada entra con animacion CSS: al anularla queda visible y quieta */
+    .animate-fade-up {
+      animation: none !important;
     }
   }
 

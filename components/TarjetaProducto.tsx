@@ -13,6 +13,12 @@ type Props = {
   categoria?: string;
   /** Las primeras filas del grid se cargan con prioridad; el resto va diferido. */
   prioritaria?: boolean;
+  /**
+   * Solo tras montar en el navegador. En el render del servidor debe quedar en
+   * false: con `initial` activo, framer escribe opacity:0 en el HTML y la
+   * tarjeta se queda invisible si el JavaScript no llega a hidratar.
+   */
+  animar?: boolean;
 };
 
 /**
@@ -20,7 +26,7 @@ type Props = {
  * al salir; sin el ref, React advierte y la animacion de salida no se aplica.
  */
 export const TarjetaProducto = forwardRef<HTMLDivElement, Props>(function TarjetaProducto(
-  { producto, categoria, prioritaria = false },
+  { producto, categoria, prioritaria = false, animar = false },
   ref
 ) {
   const reducido = useReducedMotion();
@@ -29,7 +35,7 @@ export const TarjetaProducto = forwardRef<HTMLDivElement, Props>(function Tarjet
     <motion.article
       ref={ref}
       layout
-      initial={{ opacity: 0, y: 18 }}
+      initial={animar ? { opacity: 0, y: 18 } : false}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8, scale: 0.97 }}
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
