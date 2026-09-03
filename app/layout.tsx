@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import { contacto, siteUrl } from '@/lib/contacto';
 import { ProveedorTema } from '@/components/ProveedorTema';
 import './globals.css';
@@ -115,6 +116,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="font-sans antialiased">
         <ProveedorTema>{children}</ProveedorTema>
+        {/* Conteo de visitas de Vercel. Sin cookies y sin datos personales:
+            solo cuenta paginas vistas y de donde llega el visitante. */}
+        <Analytics />
       </body>
     </html>
   );
