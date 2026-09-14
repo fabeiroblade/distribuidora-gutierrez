@@ -66,6 +66,10 @@ const config: Config = {
           'radial-gradient(ellipse 72% 58% at 14% 2%, rgba(238,34,96,.62), transparent 62%), radial-gradient(ellipse 62% 55% at 90% 14%, rgba(255,159,28,.40), transparent 62%), radial-gradient(ellipse 88% 68% at 52% 104%, rgba(176,38,71,.68), transparent 66%)',
       },
       keyframes: {
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
         'fade-up': {
           from: { opacity: '0', transform: 'translateY(14px)' },
           to: { opacity: '1', transform: 'none' },
@@ -81,6 +85,7 @@ const config: Config = {
         },
       },
       animation: {
+        'fade-in': 'fade-in .28s ease-out both',
         'fade-up': 'fade-up .5s cubic-bezier(.16,1,.3,1) both',
         marquee: 'marquee 32s linear infinite',
         'pulse-ring': 'pulse-ring 2.4s cubic-bezier(.24,0,.38,1) infinite',

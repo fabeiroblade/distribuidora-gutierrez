@@ -77,6 +77,7 @@ async function main() {
     // Si la imagen ya se subió, queda apuntando al almacén; si no, se respeta
     // la ruta local para no dejar el producto sin foto.
     imagen: urls[p.imagen] ?? p.imagen,
+    imagenes: [urls[p.imagen] ?? p.imagen],
     activo: true,
     orden: i,
   }));

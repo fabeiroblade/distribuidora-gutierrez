@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import { borrarProducto, guardarProducto, type Resultado } from '@/app/admin/acciones';
 import type { Categoria, Producto } from '@/lib/types';
-import { SubirImagen } from './SubirImagen';
+import { SubirImagenes } from './SubirImagenes';
 
 const campo =
   'mt-2 w-full rounded-xl border borde-sutil superficie-2 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500';
@@ -51,7 +51,10 @@ export function FormularioProducto({
 }) {
   const [estado, accion] = useFormState<Resultado | null, FormData>(guardarProducto, null);
   const [borrado, accionBorrar] = useFormState<Resultado | null, FormData>(borrarProducto, null);
-  const [imagen, setImagen] = useState(producto?.imagen ?? '');
+  // Los productos creados antes de la galería solo traen la portada suelta.
+  const [imagenes, setImagenes] = useState<string[]>(
+    producto?.imagenes?.length ? producto.imagenes : producto?.imagen ? [producto.imagen] : []
+  );
 
   const nuevo = !producto;
   const fallo = (estado && !estado.ok && estado.error) || (borrado && !borrado.ok && borrado.error);
@@ -60,12 +63,12 @@ export function FormularioProducto({
     <>
       <form action={accion} className="mt-8 grid gap-8 lg:grid-cols-[320px_1fr] lg:items-start">
         {producto && <input type="hidden" name="id" value={producto.id} />}
-        <input type="hidden" name="imagen" value={imagen} />
+        <input type="hidden" name="imagenes" value={imagenes.join('\n')} />
 
         <div>
-          <span className={etiqueta}>Imagen</span>
+          <span className={etiqueta}>Fotos</span>
           <div className="mt-2">
-            <SubirImagen valor={imagen} onCambio={setImagen} />
+            <SubirImagenes valor={imagenes} onCambio={setImagenes} />
           </div>
         </div>
 

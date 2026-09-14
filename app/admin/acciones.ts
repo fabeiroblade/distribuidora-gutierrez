@@ -19,7 +19,7 @@ export async function aIdentificador(texto: string): Promise<string> {
   return texto
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 60);
@@ -66,11 +66,20 @@ export async function salir() {
 function leerProducto(datos: FormData) {
   const precioTexto = String(datos.get('precio') ?? '').trim();
 
+  // La galería llega como una URL por línea; la primera es la portada.
+  const imagenes = String(datos.get('imagenes') ?? '')
+    .split('\n')
+    .map((t) => t.trim())
+    .filter(Boolean);
+
   return {
     nombre: String(datos.get('nombre') ?? '').trim(),
     descripcion: String(datos.get('descripcion') ?? '').trim(),
     categoria: String(datos.get('categoria') ?? '').trim(),
-    imagen: String(datos.get('imagen') ?? '').trim(),
+    imagenes,
+    // Se mantiene por separado para que el resto del sitio (portadas de
+    // categoría, datos para Google) siga teniendo una imagen principal directa.
+    imagen: imagenes[0] ?? '',
     // Vacío significa "Precio de mayoreo", no cero.
     precio: precioTexto === '' ? null : Number(precioTexto),
     presentaciones: String(datos.get('presentaciones') ?? '')
@@ -93,7 +102,9 @@ export async function guardarProducto(
 
   if (!campos.nombre) return { ok: false, error: 'El producto necesita un nombre.' };
   if (!campos.categoria) return { ok: false, error: 'Elige una categoría.' };
-  if (!campos.imagen) return { ok: false, error: 'Sube una imagen del producto.' };
+  if (campos.imagenes.length === 0) {
+    return { ok: false, error: 'Sube al menos una foto del producto.' };
+  }
   if (campos.precio !== null && Number.isNaN(campos.precio)) {
     return { ok: false, error: 'El precio debe ser un número, o quedar vacío para cotizar.' };
   }

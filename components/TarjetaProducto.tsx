@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import { forwardRef } from 'react';
+import { GaleriaProducto } from '@/components/GaleriaProducto';
 import { motion, useReducedMotion } from 'framer-motion';
 import { mensajes, whatsappUrl } from '@/lib/contacto';
 import { formatearPrecio } from '@/lib/productos';
@@ -31,6 +31,9 @@ export const TarjetaProducto = forwardRef<HTMLDivElement, Props>(function Tarjet
 ) {
   const reducido = useReducedMotion();
 
+  // Los productos creados antes de la galería solo traen la portada suelta.
+  const fotos = producto.imagenes?.length ? producto.imagenes : [producto.imagen];
+
   return (
     <motion.article
       ref={ref}
@@ -44,21 +47,17 @@ export const TarjetaProducto = forwardRef<HTMLDivElement, Props>(function Tarjet
     >
       {/* Imagen — el zoom vive en el <Image>, el contenedor recorta el desborde */}
       <div className="relative aspect-square overflow-hidden bg-ink-50 dark:bg-ink-800">
-        <Image
-          src={producto.imagen}
+        <GaleriaProducto
+          imagenes={fotos}
           alt={producto.nombre}
-          fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          loading={prioritaria ? 'eager' : 'lazy'}
-          priority={prioritaria}
-          className="object-cover transition-transform duration-[600ms] ease-[cubic-bezier(.16,1,.3,1)] will-change-transform group-hover:scale-[1.12]"
+          prioritaria={prioritaria}
         />
 
         {/* Velo que aparece al hacer hover, para que el boton se lea sobre la foto */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink-950/70 via-ink-950/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
         {producto.destacado && (
-          <span className="absolute left-3 top-3 rounded-full bg-amber-500 px-2.5 py-1 text-[0.62rem] font-extrabold uppercase tracking-wider text-ink-950 shadow-sm">
+          <span className="absolute left-3 top-3 z-10 rounded-full bg-amber-500 px-2.5 py-1 text-[0.62rem] font-extrabold uppercase tracking-wider text-ink-950 shadow-sm">
             Más pedido
           </span>
         )}
@@ -66,7 +65,7 @@ export const TarjetaProducto = forwardRef<HTMLDivElement, Props>(function Tarjet
         {/* En movil la tarjeta mide ~160px: el nombre de la categoria taparia
             la foto entera, y ya se sabe cual es por el filtro activo. */}
         {categoria && (
-          <span className="absolute right-3 top-3 hidden rounded-full bg-white/90 px-2.5 py-1 text-[0.62rem] font-bold text-ink-700 backdrop-blur-sm dark:bg-ink-950/85 dark:text-ink-200 sm:block">
+          <span className="absolute right-3 top-3 z-10 hidden rounded-full bg-white/90 px-2.5 py-1 text-[0.62rem] font-bold text-ink-700 backdrop-blur-sm dark:bg-ink-950/85 dark:text-ink-200 sm:block">
             {categoria}
           </span>
         )}
@@ -75,7 +74,9 @@ export const TarjetaProducto = forwardRef<HTMLDivElement, Props>(function Tarjet
           href={whatsappUrl(mensajes.producto(producto.nombre))}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute inset-x-3 bottom-3 flex translate-y-3 items-center justify-center gap-2 rounded-xl bg-[#25D366] py-2.5 text-sm font-bold text-ink-950 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 focus-visible:translate-y-0 focus-visible:opacity-100"
+          className={`absolute inset-x-3 z-10 flex translate-y-3 items-center justify-center gap-2 rounded-xl bg-[#25D366] py-2.5 text-sm font-bold text-ink-950 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 focus-visible:translate-y-0 focus-visible:opacity-100 ${
+            fotos.length > 1 ? 'bottom-7' : 'bottom-3'
+          }`}
           aria-label={`Cotizar ${producto.nombre} por WhatsApp`}
         >
           <IconoWhatsApp className="h-4 w-4" />

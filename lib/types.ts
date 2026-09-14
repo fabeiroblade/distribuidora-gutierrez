@@ -13,8 +13,10 @@ export type Producto = {
   descripcion: string;
   /** Coincide con Categoria["id"]. */
   categoria: string;
-  /** Ruta en public/ o URL del almacén de Supabase. */
+  /** Portada. Siempre igual a imagenes[0]. */
   imagen: string;
+  /** Galería completa; la primera es la portada. */
+  imagenes?: string[];
   /** null = mayoreo, se cotiza por WhatsApp. */
   precio: number | null;
   presentaciones: string[];

@@ -107,6 +107,14 @@ recibe ningún correo de confirmación.
 esquinas. Es el mismo tratamiento que recibieron las 55 fotos originales, así
 que la cuadrícula del catálogo se mantiene pareja sin trabajo manual.
 
+**Cada producto admite hasta 8 fotos.** En el panel se suben varias de una vez,
+se reordenan con las flechas y se quita la que sobre. La primera de la fila es
+la portada: es la que se ve en la parrilla y la que usan las tarjetas de
+categoría y los datos para Google. En el sitio, un producto con más de una foto
+muestra flechas para pasarlas y unos puntos que indican cuántas hay; en el
+teléfono además se deslizan con el dedo. Con una sola foto no aparece ningún
+control.
+
 **El sitio público** sigue sirviéndose desde caché y se regenera cada hora. Al
 guardar algo en el panel se refresca de inmediato, así que el cambio se ve al
 instante sin perder velocidad.

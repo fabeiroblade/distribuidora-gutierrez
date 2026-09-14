@@ -68,7 +68,8 @@ create table if not exists public.productos (
   nombre          text not null,
   descripcion     text not null default '',
   categoria       text not null references public.categorias(id) on update cascade,
-  imagen          text not null,
+  imagen          text not null,            -- portada: siempre imagenes[1]
+  imagenes        text[] not null default '{}',
   precio          numeric(10,2),          -- null = "Precio de mayoreo"
   presentaciones  text[] not null default '{}',
   destacado       boolean not null default false,
@@ -83,6 +84,17 @@ create index if not exists productos_activo_idx    on public.productos (activo);
 
 comment on column public.productos.activo is
   'false esconde el producto del sitio público sin borrarlo del panel.';
+
+comment on column public.productos.imagenes is
+  'Galería del producto. La primera es la portada y se refleja en la columna imagen.';
+
+-- Para bases creadas antes de que existiera la galería.
+alter table public.productos
+  add column if not exists imagenes text[] not null default '{}';
+
+update public.productos
+set imagenes = array[imagen]
+where cardinality(imagenes) = 0 and imagen <> '';
 
 -- Marca de tiempo de la última edición, para saber qué se tocó y cuándo.
 create or replace function public.tocar_editado_en()
