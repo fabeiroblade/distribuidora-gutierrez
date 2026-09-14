@@ -149,6 +149,12 @@ grant select on public.categorias, public.productos to anon, authenticated;
 grant insert, update, delete on public.categorias, public.productos to authenticated;
 grant select, insert, update, delete on public.perfiles to authenticated;
 
+-- El rol de servicio se salta las políticas por fila, pero NO los permisos de
+-- tabla. Suele recibirlos solos cuando el proyecto expone las tablas nuevas de
+-- forma automática; con esa opción apagada —que es lo recomendable— hay que
+-- dárselos aquí, o la migración responde "permission denied for table".
+grant select, insert, update, delete on public.categorias, public.productos, public.perfiles to service_role;
+
 
 -- --- Políticas: catálogo -----------------------------------------------------
 
