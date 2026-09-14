@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { categorias } from '@/lib/productos';
+
 import {
   contacto,
   mensajes,
@@ -9,6 +9,7 @@ import {
   whatsappUrl,
   type RedSocial,
 } from '@/lib/contacto';
+import type { Categoria } from '@/lib/types';
 import {
   IconoCorreo,
   IconoFacebook,
@@ -32,7 +33,7 @@ const iconoRed: Record<RedSocial['id'], typeof IconoInstagram> = {
   tiktok: IconoTikTok,
 };
 
-export function Footer() {
+export function Footer({ categorias }: { categorias: Categoria[] }) {
   const redes = [
     { id: 'whatsapp', nombre: 'WhatsApp', href: whatsappUrl(mensajes.general), Icono: IconoWhatsApp },
     ...redesConfiguradas.map((r) => ({ ...r, Icono: iconoRed[r.id] })),

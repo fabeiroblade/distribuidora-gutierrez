@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
-import { categorias, grupos, productos } from '@/lib/productos';
+import { contarPorCategoria, gruposDe } from '@/lib/productos';
+import type { Catalogo as DatosCatalogo } from '@/lib/types';
 import { mensajes, whatsappUrl } from '@/lib/contacto';
 import { TarjetaProducto } from './TarjetaProducto';
 import { Reveal } from './Reveal';
@@ -17,7 +18,7 @@ const normalizar = (texto: string) =>
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
 
-export function Catalogo() {
+export function Catalogo({ categorias, productos }: DatosCatalogo) {
   const [filtro, setFiltro] = useState<string>(TODOS);
   const [grupo, setGrupo] = useState<string>(TODOS);
   const [busqueda, setBusqueda] = useState('');
@@ -30,15 +31,17 @@ export function Catalogo() {
   const [montado, setMontado] = useState(false);
   useEffect(() => setMontado(true), []);
 
+  const grupos = useMemo(() => gruposDe(categorias), [categorias]);
+
   const nombreCategoria = useMemo(
     () => Object.fromEntries(categorias.map((c) => [c.id, c.nombre])),
-    []
+    [categorias]
   );
 
   // Al elegir una familia (Desechables / Limpieza) solo se ofrecen sus categorías.
   const categoriasVisibles = useMemo(
     () => (grupo === TODOS ? categorias : categorias.filter((c) => c.grupo === grupo)),
-    [grupo]
+    [grupo, categorias]
   );
 
   /** Productos que pasan familia y busqueda, sin aplicar aun la categoria. */
@@ -57,7 +60,7 @@ export function Catalogo() {
       );
       return palabras.every((palabra) => heno.includes(palabra));
     });
-  }, [grupo, busqueda]);
+  }, [grupo, busqueda, categorias, productos]);
 
   const resultados = useMemo(
     () => (filtro === TODOS ? candidatos : candidatos.filter((p) => p.categoria === filtro)),

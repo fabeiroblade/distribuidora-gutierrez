@@ -1,14 +1,15 @@
-import categoriasJson from '@/data/categorias.json';
-import productosJson from '@/data/productos.json';
 import type { Categoria, Producto } from './types';
 
-export const categorias = categoriasJson as Categoria[];
-export const productos = productosJson as Producto[];
+/**
+ * Funciones puras sobre el catálogo. Sin acceso a datos, para que puedan
+ * usarse igual desde el servidor y desde los componentes de navegador.
+ */
 
-/** Familias de alto nivel, en el orden en que aparecen en data/categorias.json. */
-export const grupos = Array.from(new Set(categorias.map((c) => c.grupo)));
+export function gruposDe(categorias: Categoria[]): string[] {
+  return Array.from(new Set(categorias.map((c) => c.grupo)));
+}
 
-export function contarPorCategoria(): Record<string, number> {
+export function contarPorCategoria(productos: Producto[]): Record<string, number> {
   return productos.reduce<Record<string, number>>((acc, p) => {
     acc[p.categoria] = (acc[p.categoria] ?? 0) + 1;
     return acc;

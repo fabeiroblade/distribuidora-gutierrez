@@ -1,0 +1,12 @@
+# Este proyecto vive dentro de htdocs, asi que Apache puede servir sus archivos
+# como texto plano aunque el sitio corra en Node. Sin esto, una peticion a
+# http://localhost/e_commerce/.env.local entregaria las claves de Supabase.
+<FilesMatch "^\.env|\.(env\.local|env\.example|json|ts|tsx|md|lock)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Nada de lo que hay aqui debe servirse por Apache: el sitio corre en Node.
+  RewriteRule ^(node_modules|\.next|\.git|data|lib|app|components|herramientas)/ - [F,L]
+</IfModule>

@@ -33,10 +33,26 @@ En ambos casos el sitio queda en **http://localhost:3000**.
 
 ---
 
+## Panel de administración
+
+El catálogo se administra desde **`/admin`**: subir fotos, crear y editar
+productos, publicarlos u ocultarlos, y dar de alta usuarios. Los datos y las
+imágenes viven en Supabase, así que un cambio se ve en el sitio al instante,
+sin tocar código ni desplegar.
+
+La puesta en marcha —crear el proyecto de Supabase, las tablas y el primer
+usuario— está paso a paso en **[supabase/LEEME.md](supabase/LEEME.md)**.
+
+Hay dos roles: **administrador** (todo, incluidos los usuarios) y **encargado**
+(solo el catálogo).
+
+---
+
 ## Datos del catálogo
 
-Todo el contenido del catálogo vive en la carpeta **`data/`**. Para agregar,
-quitar o corregir productos no hace falta tocar el código.
+Los archivos de **`data/`** dejaron de ser la fuente principal: ahora son el
+**respaldo**. Si Supabase no responde o falta configurarlo, el sitio público los
+usa para no salir vacío. Conviene conservarlos.
 
 | Archivo | Qué contiene |
 | --- | --- |
@@ -91,6 +107,9 @@ entorno. Se editan en `.env.local` para local, y en Vercel desde
 | `NEXT_PUBLIC_HORARIO` | Horario de atención |
 | `NEXT_PUBLIC_MAPA` | Opcional; enlace a Google Maps |
 | `NEXT_PUBLIC_SITE_URL` | Dominio final, usado por el sitemap y las etiquetas para redes |
+| `NEXT_PUBLIC_SUPABASE_URL` | Dirección del proyecto de Supabase |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clave pública de Supabase |
+| `SUPABASE_SERVICE_ROLE_KEY` | **Secreta.** Solo para crear usuarios desde el servidor |
 
 `.env.example` tiene la plantilla completa con ejemplos.
 
@@ -123,11 +142,13 @@ cambio a GitHub y Vercel vuelve a desplegar automáticamente.
 ## Cómo está organizado
 
 ```
-app/          layout con el SEO, página principal, sitemap.xml y robots.txt
-components/   secciones y piezas de interfaz
-lib/          tipos, lectura del catálogo y configuración de contacto
-data/         catálogo en JSON  ← lo que se edita a diario
-public/       logos e imágenes de producto
+app/          sitio público, y el panel en app/admin
+components/   secciones del sitio; las del panel en components/admin
+lib/          tipos, acceso a datos, sesión y configuración de contacto
+data/         catálogo en JSON — respaldo por si la base no responde
+public/       logos e imágenes originales
+supabase/     esquema de la base, migración y guía de puesta en marcha
+herramientas/ prueba de iOS y generador de banners
 ```
 
 Secciones de la página: portada, categorías, catálogo con filtros y buscador,

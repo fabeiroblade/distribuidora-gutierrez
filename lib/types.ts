@@ -4,6 +4,7 @@ export type Categoria = {
   /** Familia comercial de alto nivel: "Desechables" o "Limpieza". */
   grupo: string;
   emoji: string;
+  orden?: number;
 };
 
 export type Producto = {
@@ -12,9 +13,29 @@ export type Producto = {
   descripcion: string;
   /** Coincide con Categoria["id"]. */
   categoria: string;
+  /** Ruta en public/ o URL del almacén de Supabase. */
   imagen: string;
   /** null = mayoreo, se cotiza por WhatsApp. */
   precio: number | null;
   presentaciones: string[];
   destacado: boolean;
+  /** false lo esconde del sitio público sin borrarlo del panel. */
+  activo?: boolean;
+  orden?: number;
+};
+
+export type Rol = 'admin' | 'editor';
+
+export type Perfil = {
+  id: string;
+  nombre: string;
+  rol: Rol;
+  correo?: string;
+  creado_en?: string;
+};
+
+/** Lo que necesitan las secciones del sitio público para pintarse. */
+export type Catalogo = {
+  categorias: Categoria[];
+  productos: Producto[];
 };

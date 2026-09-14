@@ -2,22 +2,32 @@
 
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
-import { categorias, contarPorCategoria, productos } from '@/lib/productos';
+import { contarPorCategoria } from '@/lib/productos';
+import type { Catalogo as DatosCatalogo, Producto } from '@/lib/types';
 import { Reveal } from './Reveal';
 
-/** Imagen que representa a cada categoría en la parrilla. */
-const portadas: Record<string, string> = {
-  contenedores: '/productos/deposito-4oz.jpg',
-  bandejas: '/productos/bandeja-hamburguesa.jpg',
-  papel: '/productos/papel-aluminio.jpg',
-  utensilios: '/productos/escobas-altas.jpg',
-  fibras: '/productos/panos-wypall.jpg',
-  quimicos: '/productos/galon-desinfectante.jpg',
-  jabones: '/productos/lavaplatos-tarro.jpg',
-};
+/**
+ * Imagen de fondo de cada categoría: el primer producto destacado que tenga, o
+ * el primero a secas. Antes eran rutas escritas a mano, que quedaban rotas al
+ * dar de baja ese producto o al mover las fotos al almacén.
+ */
+function portadasDe(productos: Producto[]): Record<string, string> {
+  const portadas: Record<string, string> = {};
 
-export function Categorias() {
-  const conteos = contarPorCategoria();
+  for (const p of productos) {
+    const actual = portadas[p.categoria];
+    if (!actual) portadas[p.categoria] = p.imagen;
+  }
+  for (const p of productos) {
+    if (p.destacado) portadas[p.categoria] = p.imagen;
+  }
+
+  return portadas;
+}
+
+export function Categorias({ categorias, productos }: DatosCatalogo) {
+  const conteos = contarPorCategoria(productos);
+  const portadas = portadasDe(productos);
   const reducido = useReducedMotion();
 
   return (
@@ -43,16 +53,19 @@ export function Categorias() {
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative flex h-full flex-col justify-end overflow-hidden rounded-2xl border borde-sutil bg-white p-5 shadow-card transition-shadow hover:shadow-card-hover dark:bg-ink-900"
               >
-                <div className="absolute inset-0 -z-10">
-                  <Image
-                    src={portadas[c.id]}
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    loading="lazy"
-                    className="object-cover opacity-[0.16] transition-transform duration-[700ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 dark:opacity-[0.13]"
-                  />
-                </div>
+                {/* Una categoría recién creada puede no tener productos todavía */}
+                {portadas[c.id] && (
+                  <div className="absolute inset-0 -z-10">
+                    <Image
+                      src={portadas[c.id]}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      loading="lazy"
+                      className="object-cover opacity-[0.16] transition-transform duration-[700ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 dark:opacity-[0.13]"
+                    />
+                  </div>
+                )}
 
                 <span className="text-3xl" aria-hidden="true">
                   {c.emoji}

@@ -7,10 +7,18 @@ import { Contacto } from '@/components/Contacto';
 import { Footer } from '@/components/Footer';
 import { AccionesFlotantes } from '@/components/AccionesFlotantes';
 import { contacto, mostrarTelefono, siteUrl } from '@/lib/contacto';
-import { categorias, productos } from '@/lib/productos';
+import { obtenerCatalogo } from '@/lib/catalogo';
+import type { Categoria, Producto } from '@/lib/types';
+
+/**
+ * El catálogo se relee cada hora, y al instante cuando el panel guarda algo
+ * (revalidatePath). Así el sitio sigue sirviéndose desde caché —rápido y
+ * barato— sin quedar desactualizado.
+ */
+export const revalidate = 3600;
 
 /** Datos estructurados para que Google entienda el negocio y el catálogo. */
-function datosEstructurados() {
+function datosEstructurados(categorias: Categoria[], productos: Producto[]) {
   const negocio = {
     '@type': 'Store',
     '@id': `${siteUrl}/#negocio`,
@@ -52,23 +60,25 @@ function datosEstructurados() {
   return { '@context': 'https://schema.org', '@graph': [negocio, catalogo] };
 }
 
-export default function Pagina() {
+export default async function Pagina() {
+  const { categorias, productos } = await obtenerCatalogo();
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(datosEstructurados()) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datosEstructurados(categorias, productos)) }}
       />
 
       <Header />
       <main>
         <Hero />
-        <Categorias />
-        <Catalogo />
+        <Categorias categorias={categorias} productos={productos} />
+        <Catalogo categorias={categorias} productos={productos} />
         <Nosotros />
         <Contacto />
       </main>
-      <Footer />
+      <Footer categorias={categorias} />
       <AccionesFlotantes />
     </>
   );
