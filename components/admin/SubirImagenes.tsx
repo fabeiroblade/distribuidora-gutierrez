@@ -86,6 +86,18 @@ function cuadrar(archivo: File): Promise<Blob> {
   });
 }
 
+/**
+ * Huella del contenido del archivo. Dos imágenes idénticas dan la misma, así
+ * que sirve de nombre para no guardar copias repetidas en el almacén.
+ */
+async function huella(blob: Blob): Promise<string> {
+  const resumen = await crypto.subtle.digest('SHA-256', await blob.arrayBuffer());
+  return Array.from(new Uint8Array(resumen))
+    .slice(0, 16)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
 export function SubirImagenes({ valor, onCambio }: Props) {
   const [subiendo, setSubiendo] = useState(0);
   const [error, setError] = useState('');
@@ -124,16 +136,27 @@ export function SubirImagenes({ valor, onCambio }: Props) {
 
       try {
         const cuadrada = await cuadrar(archivo);
-        const nombre = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`;
+
+        // El nombre sale del contenido, no del reloj: la misma foto siempre da
+        // el mismo nombre, así que subirla dos veces no crea dos archivos.
+        const nombre = (await huella(cuadrada)) + '.jpg';
+        const url = sb.storage.from('productos').getPublicUrl(nombre).data.publicUrl;
+
+        if (valor.includes(url) || subidas.includes(url)) {
+          setError('Esa foto ya está en el producto.');
+          continue;
+        }
 
         const { error: fallo } = await sb.storage.from('productos').upload(nombre, cuadrada, {
           contentType: 'image/jpeg',
           cacheControl: '31536000',
         });
 
-        if (fallo) throw new Error(fallo.message);
+        // Si ya existía, se reutiliza el archivo en vez de duplicarlo.
+        const yaEstaba = fallo?.message?.toLowerCase().includes('already exists');
+        if (fallo && !yaEstaba) throw new Error(fallo.message);
 
-        subidas.push(sb.storage.from('productos').getPublicUrl(nombre).data.publicUrl);
+        subidas.push(url);
       } catch (e) {
         setError(e instanceof Error ? e.message : 'No se pudo subir una de las imágenes.');
       } finally {

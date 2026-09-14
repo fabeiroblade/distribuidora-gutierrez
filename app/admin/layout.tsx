@@ -23,6 +23,7 @@ export default async function LayoutPanel({ children }: { children: React.ReactN
   const enlaces = [
     { href: '/admin', texto: 'Inicio' },
     { href: '/admin/productos', texto: 'Productos' },
+    { href: '/admin/categorias', texto: 'Categorías' },
     ...(perfil.rol === 'admin' ? [{ href: '/admin/usuarios', texto: 'Usuarios' }] : []),
   ];
 

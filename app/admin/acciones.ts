@@ -247,3 +247,145 @@ export async function eliminarUsuario(
   revalidatePath('/admin/usuarios');
   redirect('/admin/usuarios?eliminado=1');
 }
+
+// ---------------------------------------------------------------------------
+// Categorías
+// ---------------------------------------------------------------------------
+
+export async function guardarCategoria(
+  _previo: Resultado | null,
+  datos: FormData
+): Promise<Resultado> {
+  if (!(await perfilActual())) return { ok: false, error: 'Tu sesión expiró. Vuelve a entrar.' };
+
+  const nombre = String(datos.get('nombre') ?? '').trim();
+  const grupo = String(datos.get('grupo') ?? '').trim();
+  const emoji = String(datos.get('emoji') ?? '').trim() || '📦';
+  const idExistente = String(datos.get('id') ?? '').trim();
+
+  if (!nombre) return { ok: false, error: 'La categoría necesita un nombre.' };
+  if (!grupo) return { ok: false, error: 'Indica a qué línea pertenece.' };
+
+  const sb = clienteServidor();
+
+  if (idExistente) {
+    // Renombrar no debe dejar dos categorías llamadas igual.
+    const { data: otra } = await sb
+      .from('categorias')
+      .select('id,nombre')
+      .eq('id', await aIdentificador(nombre))
+      .neq('id', idExistente)
+      .maybeSingle();
+
+    if (otra) {
+      return { ok: false, error: `Ya existe la categoría "${otra.nombre}".` };
+    }
+
+    // El id no se toca al editar: los productos apuntan a él.
+    const { error } = await sb
+      .from('categorias')
+      .update({ nombre, grupo, emoji })
+      .eq('id', idExistente);
+
+    if (error) return { ok: false, error: 'No se pudo guardar: ' + error.message };
+  } else {
+    const id = await aIdentificador(nombre);
+    if (!id) return { ok: false, error: 'Ese nombre no sirve para generar un identificador.' };
+
+    /*
+     * El identificador sale del nombre sin acentos ni mayúsculas, así que
+     * "Vasos", "vasos" y "VASOS" chocan entre sí. Se avisa antes de intentar
+     * la inserción: la base también lo rechazaría, pero con un mensaje suyo
+     * que no dice qué categoría es la que ya existe.
+     */
+    const { data: choque } = await sb
+      .from('categorias')
+      .select('nombre')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (choque) {
+      return {
+        ok: false,
+        error: `Ya existe la categoría "${choque.nombre}". Usa otro nombre o edita esa.`,
+      };
+    }
+
+    // Va al final de la lista.
+    const { data: ultima } = await sb
+      .from('categorias')
+      .select('orden')
+      .order('orden', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    const { error } = await sb
+      .from('categorias')
+      .insert({ id, nombre, grupo, emoji, orden: (ultima?.orden ?? 0) + 1 });
+
+    if (error) {
+      return {
+        ok: false,
+        error:
+          error.code === '23505'
+            ? 'Ya existe una categoría con ese nombre.'
+            : 'No se pudo crear: ' + error.message,
+      };
+    }
+  }
+
+  refrescarSitio();
+  revalidatePath('/admin/categorias');
+  redirect('/admin/categorias?guardado=1');
+}
+
+export async function borrarCategoria(
+  _previo: Resultado | null,
+  datos: FormData
+): Promise<Resultado> {
+  if (!(await perfilActual())) return { ok: false, error: 'Tu sesión expiró. Vuelve a entrar.' };
+
+  const id = String(datos.get('id') ?? '');
+  const sb = clienteServidor();
+
+  const { error } = await sb.from('categorias').delete().eq('id', id);
+
+  if (error) {
+    // 23503 = hay productos apuntando a esta categoría.
+    return {
+      ok: false,
+      error:
+        error.code === '23503'
+          ? 'Esta categoría todavía tiene productos. Muévelos a otra antes de eliminarla.'
+          : 'No se pudo eliminar: ' + error.message,
+    };
+  }
+
+  refrescarSitio();
+  revalidatePath('/admin/categorias');
+  redirect('/admin/categorias?eliminado=1');
+}
+
+/** Sube o baja una categoría en el orden en que se muestran. */
+export async function moverCategoria(id: string, salto: number): Promise<Resultado> {
+  if (!(await perfilActual())) return { ok: false, error: 'Tu sesión expiró. Vuelve a entrar.' };
+
+  const sb = clienteServidor();
+  const { data: lista } = await sb.from('categorias').select('id,orden').order('orden');
+  if (!lista) return { ok: false, error: 'No se pudo leer el orden.' };
+
+  const i = lista.findIndex((c) => c.id === id);
+  const destino = i + salto;
+  if (i === -1 || destino < 0 || destino >= lista.length) return { ok: true };
+
+  // Se intercambian las posiciones, no los valores guardados: así el orden
+  // queda compacto aunque alguna categoría se haya borrado antes.
+  await Promise.all([
+    sb.from('categorias').update({ orden: destino }).eq('id', lista[i].id),
+    sb.from('categorias').update({ orden: i }).eq('id', lista[destino].id),
+  ]);
+
+  refrescarSitio();
+  revalidatePath('/admin/categorias');
+  return { ok: true };
+}

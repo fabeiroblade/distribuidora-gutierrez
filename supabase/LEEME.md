@@ -91,6 +91,7 @@ a desplegar. El panel queda en
 | Crear, editar y borrar productos | Sí | Sí |
 | Subir imágenes | Sí | Sí |
 | Publicar y ocultar productos | Sí | Sí |
+| Crear y editar categorías | Sí | Sí |
 | Crear y eliminar usuarios | Sí | No |
 | Cambiar roles | Sí | No |
 
@@ -114,6 +115,12 @@ categoría y los datos para Google. En el sitio, un producto con más de una fot
 muestra flechas para pasarlas y unos puntos que indican cuántas hay; en el
 teléfono además se deslizan con el dedo. Con una sola foto no aparece ningún
 control.
+
+**Nada se duplica.** El identificador de cada categoría sale de su nombre sin
+acentos ni mayúsculas, así que «Vasos», «vasos» y «VASOS» son la misma: el
+formulario avisa mientras escribes y desactiva el botón. Las fotos se nombran
+por su contenido, de modo que subir dos veces la misma imagen no crea dos
+archivos en el almacén, y repetirla dentro de un producto se rechaza.
 
 **El sitio público** sigue sirviéndose desde caché y se regenera cada hora. Al
 guardar algo en el panel se refresca de inmediato, así que el cambio se ve al
