@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useRef, useState } from 'react';
+import { VisorImagen } from './VisorImagen';
 
 type Props = {
   imagenes: string[];
@@ -26,6 +27,7 @@ function Flecha({ hacia }: { hacia: 'izquierda' | 'derecha' }) {
  */
 export function GaleriaProducto({ imagenes, alt, prioritaria = false }: Props) {
   const [indice, setIndice] = useState(0);
+  const [ampliada, setAmpliada] = useState(false);
   const inicioTactil = useRef<number | null>(null);
 
   const varias = imagenes.length > 1;
@@ -57,16 +59,34 @@ export function GaleriaProducto({ imagenes, alt, prioritaria = false }: Props) {
         inicioTactil.current = null;
       }}
     >
-      <Image
-        key={actual}
-        src={actual}
-        alt={alt}
-        fill
-        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-        loading={prioritaria ? 'eager' : 'lazy'}
-        priority={prioritaria}
-        className="animate-fade-in object-cover transition-transform duration-[600ms] ease-[cubic-bezier(.16,1,.3,1)] will-change-transform group-hover:scale-[1.12]"
-      />
+      {/* La foto abre el visor. Antes no era pulsable y el clic caía en el
+          botón de cotizar, que está encima aunque no se vea. */}
+      <button
+        type="button"
+        onClick={sinPropagar(() => setAmpliada(true))}
+        aria-label={`Ver ${alt} en grande`}
+        className="absolute inset-0 z-10 block cursor-zoom-in"
+      >
+        <Image
+          key={actual}
+          src={actual}
+          alt={alt}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          loading={prioritaria ? 'eager' : 'lazy'}
+          priority={prioritaria}
+          className="animate-fade-in object-cover transition-transform duration-[600ms] ease-[cubic-bezier(.16,1,.3,1)] will-change-transform group-hover:scale-[1.12]"
+        />
+      </button>
+
+      {ampliada && (
+        <VisorImagen
+          imagenes={imagenes}
+          inicial={indice}
+          nombre={alt}
+          onCerrar={() => setAmpliada(false)}
+        />
+      )}
 
       {varias && (
         <>

@@ -54,10 +54,10 @@ export const TarjetaProducto = forwardRef<HTMLDivElement, Props>(function Tarjet
         />
 
         {/* Velo que aparece al hacer hover, para que el boton se lea sobre la foto */}
-        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink-950/70 via-ink-950/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-ink-950/70 via-ink-950/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
         {producto.destacado && (
-          <span className="absolute left-3 top-3 z-10 rounded-full bg-amber-500 px-2.5 py-1 text-[0.62rem] font-extrabold uppercase tracking-wider text-ink-950 shadow-sm">
+          <span className="pointer-events-none absolute left-3 top-3 z-20 rounded-full bg-amber-500 px-2.5 py-1 text-[0.62rem] font-extrabold uppercase tracking-wider text-ink-950 shadow-sm">
             Más pedido
           </span>
         )}
@@ -65,7 +65,7 @@ export const TarjetaProducto = forwardRef<HTMLDivElement, Props>(function Tarjet
         {/* En movil la tarjeta mide ~160px: el nombre de la categoria taparia
             la foto entera, y ya se sabe cual es por el filtro activo. */}
         {categoria && (
-          <span className="absolute right-3 top-3 z-10 hidden rounded-full bg-white/90 px-2.5 py-1 text-[0.62rem] font-bold text-ink-700 backdrop-blur-sm dark:bg-ink-950/85 dark:text-ink-200 sm:block">
+          <span className="pointer-events-none absolute right-3 top-3 z-20 hidden rounded-full bg-white/90 px-2.5 py-1 text-[0.62rem] font-bold text-ink-700 backdrop-blur-sm dark:bg-ink-950/85 dark:text-ink-200 sm:block">
             {categoria}
           </span>
         )}
@@ -74,7 +74,9 @@ export const TarjetaProducto = forwardRef<HTMLDivElement, Props>(function Tarjet
           href={whatsappUrl(mensajes.producto(producto.nombre))}
           target="_blank"
           rel="noopener noreferrer"
-          className={`absolute inset-x-3 z-10 flex translate-y-3 items-center justify-center gap-2 rounded-xl bg-[#25D366] py-2.5 text-sm font-bold text-ink-950 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 focus-visible:translate-y-0 focus-visible:opacity-100 ${
+          /* pointer-events-none mientras está invisible: si no, en el teléfono se
+             toca la foto y se abre WhatsApp sin haber visto ningún botón. */
+          className={`pointer-events-none absolute inset-x-3 z-20 flex translate-y-3 items-center justify-center gap-2 rounded-xl bg-[#25D366] py-2.5 text-sm font-bold text-ink-950 opacity-0 transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 focus-visible:pointer-events-auto focus-visible:translate-y-0 focus-visible:opacity-100 ${
             fotos.length > 1 ? 'bottom-7' : 'bottom-3'
           }`}
           aria-label={`Cotizar ${producto.nombre} por WhatsApp`}

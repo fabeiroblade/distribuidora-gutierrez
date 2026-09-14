@@ -122,6 +122,10 @@ formulario avisa mientras escribes y desactiva el botón. Las fotos se nombran
 por su contenido, de modo que subir dos veces la misma imagen no crea dos
 archivos en el almacén, y repetirla dentro de un producto se rechaza.
 
+**Al tocar una foto se abre en grande** sobre el catálogo, sin salir de la
+página: con flechas, miniaturas y el botón de cotizar. Se cierra con la X, con
+Escape o tocando fuera.
+
 **El sitio público** sigue sirviéndose desde caché y se regenera cada hora. Al
 guardar algo en el panel se refresca de inmediato, así que el cambio se ve al
 instante sin perder velocidad.
