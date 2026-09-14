@@ -78,7 +78,7 @@ usa para no salir vacío. Conviene conservarlos.
 - **`categoria`** — tiene que coincidir con un `id` de `data/categorias.json`.
 - **`imagen`** — ruta dentro de `public/`. Las fotos van en `public/productos/`,
   cuadradas (700×700 px) para que la parrilla quede pareja.
-- **`precio`** — `null` muestra la etiqueta **«Precio de mayoreo»** e invita a
+- **`precio`** — `null` muestra la etiqueta **«Precios según presentación»** e invita a
   cotizar. Si algún día se publican precios, se pone el número (ej. `12.5`) y la
   tarjeta lo formatea en dólares automáticamente.
 - **`destacado`** — `true` pinta el distintivo «Más pedido».

@@ -17,7 +17,7 @@ export function contarPorCategoria(productos: Producto[]): Record<string, number
 }
 
 export function formatearPrecio(precio: number | null): string {
-  if (precio === null) return 'Precio de mayoreo';
+  if (precio === null) return 'Precios según presentación';
   return new Intl.NumberFormat('es-SV', {
     style: 'currency',
     currency: 'USD',

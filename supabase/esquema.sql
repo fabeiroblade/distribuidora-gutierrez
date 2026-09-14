@@ -70,7 +70,7 @@ create table if not exists public.productos (
   categoria       text not null references public.categorias(id) on update cascade,
   imagen          text not null,            -- portada: siempre imagenes[1]
   imagenes        text[] not null default '{}',
-  precio          numeric(10,2),          -- null = "Precio de mayoreo"
+  precio          numeric(10,2),          -- null = "Precios según presentación"
   presentaciones  text[] not null default '{}',
   destacado       boolean not null default false,
   activo          boolean not null default true,

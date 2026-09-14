@@ -139,7 +139,7 @@ export function FormularioProducto({
                 className={campo}
               />
               <p className="mt-1.5 text-xs texto-suave">
-                Déjalo vacío y la tarjeta dirá «Precio de mayoreo».
+                Déjalo vacío y la tarjeta dirá «Precios según presentación».
               </p>
             </div>
           </div>

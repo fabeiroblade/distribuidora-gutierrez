@@ -80,7 +80,7 @@ function leerProducto(datos: FormData) {
     // Se mantiene por separado para que el resto del sitio (portadas de
     // categoría, datos para Google) siga teniendo una imagen principal directa.
     imagen: imagenes[0] ?? '',
-    // Vacío significa "Precio de mayoreo", no cero.
+    // Vacío significa "Precios según presentación", no cero.
     precio: precioTexto === '' ? null : Number(precioTexto),
     presentaciones: String(datos.get('presentaciones') ?? '')
       .split('\n')
