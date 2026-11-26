@@ -1,9 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "crons": [
-    {
+  "schedules": {
+    "mantener-activo": {
+      "schedule": "0 6 * * *",
+      "timezone": "America/El_Salvador",
       "path": "/api/mantener-activo",
-      "schedule": "0 12 * * *"
+      "requestMethod": "GET"
     }
-  ]
+  }
 }
